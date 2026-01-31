@@ -1,54 +1,178 @@
-# FinancialResearcher Crew
 
-Welcome to the FinancialResearcher Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+📊 Financial Researcher
 
-## Installation
+AI-powered financial research & analysis using autonomous agents
 
-Ensure you have Python >=3.10 <3.14 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+Financial Researcher is an AI-driven research system built with CrewAI that automates company analysis by coordinating multiple specialized agents. It gathers up-to-date information, performs structured analysis, and generates a clean, shareable report — all with minimal human input.
 
-First, if you haven't already, install uv:
+✨ What This Project Does
 
-```bash
-pip install uv
-```
+Given a company name (e.g. Apple), the system:
 
-Next, navigate to your project directory and install the dependencies:
+🔎 Researches the company using web search and LLM reasoning
 
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
-```
-### Customizing
+📈 Analyzes financial, market, and strategic signals
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
+📝 Generates a structured report in Markdown format
 
-- Modify `src/financial_researcher/config/agents.yaml` to define your agents
-- Modify `src/financial_researcher/config/tasks.yaml` to define your tasks
-- Modify `src/financial_researcher/crew.py` to add your own logic, tools and specific args
-- Modify `src/financial_researcher/main.py` to add custom inputs for your agents and tasks
+💾 Saves the final output for easy sharing and review
 
-## Running the Project
+This makes it useful for:
 
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
+Investment research
 
-```bash
-$ crewai run
-```
+Market intelligence
 
-This command initializes the financial_researcher Crew, assembling the agents and assigning them tasks as defined in your configuration.
+Competitive analysis
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+Strategy & business insights
 
-## Understanding Your Crew
+Rapid due-diligence workflows
 
-The financial_researcher Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+🧠 How It Works (High Level)
 
-## Support
+The system uses a multi-agent architecture:
 
-For support, questions, or feedback regarding the FinancialResearcher Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
+Agents
 
-Let's create wonders together with the power and simplicity of crewAI.
+Researcher Agent
+
+Gathers information from the web
+
+Uses search tools for real-world data
+
+Analyst Agent
+
+Interprets findings
+
+Produces structured insights and conclusions
+
+Tasks
+
+Research Task → data collection
+
+Analysis Task → synthesis + reporting
+
+Agents collaborate sequentially to ensure accuracy and logical flow.
+
+🏗️ Architecture
+User Input (Company Name)
+        ↓
+Research Agent (Web + LLM)
+        ↓
+Analysis Agent (Reasoning + Synthesis)
+        ↓
+Final Report (output/report.md)
+📁 Project Structure
+financial-researcher/
+├── src/
+│   └── financial_researcher/
+│       ├── crew.py          # Agent & crew definitions
+│       ├── main.py          # Entry point
+│       └── config/
+│           ├── agents.yaml  # Agent behavior & roles
+│           └── tasks.yaml   # Task definitions
+├── output/
+│   └── report.md            # Generated research report
+├── .env                     # API keys (not committed)
+├── pyproject.toml
+└── README.md
+⚙️ Tech Stack
+
+Python
+
+CrewAI – multi-agent orchestration
+
+OpenAI API – LLM reasoning & generation
+
+Serper API – real-time web search
+
+dotenv – environment management
+
+🚀 Getting Started
+1️⃣ Clone the repository
+git clone https://github.com/mahgolmoghaddas/financial-researcher.git
+cd financial-researcher
+2️⃣ Create and activate a virtual environment
+python -m venv .venv
+source .venv/bin/activate  # macOS / Linux
+3️⃣ Install dependencies
+pip install -r requirements.txt
+4️⃣ Set environment variables
+
+Create a .env file in the project root:
+
+OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxx
+SERPER_API_KEY=xxxxxxxxxxxxxxxx
+
+⚠️ Never commit .env to GitHub.
+
+5️⃣ Run the project
+crewai run
+
+Or directly:
+
+python -m financial_researcher.main
+📄 Output
+
+After execution, the final report is saved to:
+
+output/report.md
+
+The report is:
+
+Human-readable
+
+Easy to share
+
+Ready for presentations or further analysis
+
+🧩 Customization
+
+You can easily adapt this system by:
+
+Changing agent behavior in agents.yaml
+
+Modifying task prompts in tasks.yaml
+
+Adding new agents (e.g. Risk Analyst, ESG Analyst)
+
+Integrating additional tools or APIs
+
+🔐 Security Notes
+
+API keys are loaded via environment variables
+
+No secrets are stored in code
+
+Designed for backend/server execution only
+
+💡 Use Cases
+
+Investment research automation
+
+Startup or company profiling
+
+Competitive landscape analysis
+
+Financial due diligence
+
+Internal research tooling
+
+🛠️ Future Enhancements
+
+PDF report generation
+
+Multi-company comparison
+
+Historical trend analysis
+
+RAG integration with internal documents
+
+Web UI / dashboard
+
+👩‍💻 Author
+
+Mahgol Moghaddas
+Software Engineer | AI & Agentic Systems
+📍 Montreal, Canada
