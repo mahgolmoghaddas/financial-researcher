@@ -1,69 +1,113 @@
-Financial Researcher
+# Financial Researcher
 
-Financial Researcher is a Python project that uses multiple AI agents to research a company and generate a short financial analysis report.
 
-You provide a company name (for example, Apple), and the system collects relevant information, analyzes it, and saves a written report to a file. The project is designed as a backend research assistant rather than a trading or prediction tool.
+Financial Researcher is a Python project that uses multiple AI agents to research a company and generate a concise financial analysis report.
 
-Purpose
 
-This project was built to explore practical use of agent-based systems for research tasks, with a focus on:
+You provide a company name (for example, *Apple*), and the system gathers relevant information, analyzes it, and saves a written report to a file. The project is designed as a backend research assistant, not a trading or prediction system.
 
-Coordinating multiple AI agents in a clear workflow
 
-Separating research and analysis responsibilities
+---
 
-Using LLMs for structured reasoning instead of chat
 
-Keeping configuration and prompts out of application code
+## Purpose
+
+
+This project was built to explore practical, real-world use of agent-based systems for research tasks. The main goals are to:
+
+
+- Coordinate multiple AI agents in a clear and predictable workflow  
+- Separate research and analysis responsibilities  
+- Use large language models for structured reasoning rather than chat  
+- Keep prompts and configuration out of application logic  
+
 
 It also serves as a clean, readable example of an AI-powered backend application.
 
-What it does
+
+---
+
+
+## What it does
+
 
 For a given company name, the system:
 
-Gathers recent and relevant information from the web
 
-Reviews and summarizes key financial and market points
-
-Produces a short, structured analysis
-
-Saves the result as a Markdown report
-
-The workflow runs sequentially so each step builds on the previous one.
-
-How it works
-
-The project uses CrewAI to orchestrate two agents:
-
-Research agent
-Responsible for gathering information using web search tools.
-
-Analysis agent
-Reviews the research output and writes the final report.
-
-Agent roles and task instructions are defined in YAML files, making it easy to adjust behavior without changing code.
-
-Project structure
+1. Collects recent and relevant information from the web  
+2. Summarizes key financial and market points  
+3. Produces a short, structured analysis  
+4. Saves the result as a Markdown report  
 
 
-<img width="553" height="286" alt="Screenshot 2026-01-31 at 2 48 01 PM" src="https://github.com/user-attachments/assets/14a8da98-34a9-4d54-a9aa-9bdb2a31a8d9" />
+The workflow runs sequentially so each step builds on the results of the previous one.
 
 
-Python
+---
 
-CrewAI
 
-OpenAI API
+## How it works
 
-Serper API (web search)
 
-python-dotenv
+The project uses **CrewAI** to orchestrate two agents:
 
-Running the project
 
-After setting your environment variables, run:
+- **Research agent**  
+  Gathers information using web search tools and public sources.
 
+
+- **Analysis agent**  
+  Reviews the research output and writes the final report.
+
+
+Agent roles and task instructions are defined in YAML files, which makes the system easy to adjust and extend without changing core code.
+
+
+---
+
+
+## Project structure
+
+
+
+financial-researcher/
+├── src/
+│ └── financial_researcher/
+│ ├── crew.py # Agent and crew setup
+│ ├── main.py # Application entry point
+│ └── config/
+│ ├── agents.yaml # Agent definitions
+│ └── tasks.yaml # Task instructions
+├── output/
+│ └── report.md # Generated report
+├── .env # API keys (not committed)
+└── README.md
+
+
+
+---
+
+
+## Technologies used
+
+
+- Python  
+- CrewAI  
+- OpenAI API  
+- Serper API (web search)  
+- python-dotenv  
+
+
+---
+
+
+## Running the project
+
+
+After setting the required environment variables, run:
+
+
+```bash
 crewai run
 
 Or:
@@ -79,17 +123,17 @@ Agent behavior and prompts are defined in agents.yaml
 
 Task instructions are defined in tasks.yaml
 
-API keys are loaded from environment variables
+API keys are loaded using environment variables
 
-This setup keeps the application logic small and easy to maintain.
+This approach keeps the application logic small, readable, and easy to maintain.
 
 Notes
 
 The project requires valid API keys for external services.
 
-API usage may incur costs depending on usage.
+API usage may incur costs depending on volume.
 
-Output quality depends on available public information and model responses.
+Output quality depends on publicly available information and model responses.
 
 Author
 
