@@ -1,178 +1,123 @@
+Financial Researcher
 
-📊 Financial Researcher
+A Python project that uses multiple AI agents to automate company research and produce a structured financial analysis report.
 
-AI-powered financial research & analysis using autonomous agents
+The goal of this project is to demonstrate how agent-based systems, LLM orchestration, and external tools can be combined into a clean, working backend application.
 
-Financial Researcher is an AI-driven research system built with CrewAI that automates company analysis by coordinating multiple specialized agents. It gathers up-to-date information, performs structured analysis, and generates a clean, shareable report — all with minimal human input.
+Why this project
 
-✨ What This Project Does
+I built this project to explore:
 
-Given a company name (e.g. Apple), the system:
+Multi-agent coordination using CrewAI
 
-🔎 Researches the company using web search and LLM reasoning
+Practical use of LLMs for research and analysis (not chat)
 
-📈 Analyzes financial, market, and strategic signals
+Clean separation between research, analysis, and orchestration
 
-📝 Generates a structured report in Markdown format
+Environment-safe API usage and backend-only execution
 
-💾 Saves the final output for easy sharing and review
+This is a backend-focused project designed to be readable, extensible, and easy to reason about.
 
-This makes it useful for:
+What the system does
 
-Investment research
+Given a company name as input, the system:
 
-Market intelligence
+Gathers recent, relevant information using a research agent
 
-Competitive analysis
+Passes findings to an analysis agent for synthesis
 
-Strategy & business insights
+Produces a written financial summary
 
-Rapid due-diligence workflows
+Saves the output as a Markdown report
 
-🧠 How It Works (High Level)
+The system runs deterministically in a sequential pipeline so each step builds on the previous one.
 
-The system uses a multi-agent architecture:
+Architecture overview
 
 Agents
 
-Researcher Agent
+Research agent: information gathering via web search
 
-Gathers information from the web
-
-Uses search tools for real-world data
-
-Analyst Agent
-
-Interprets findings
-
-Produces structured insights and conclusions
+Analysis agent: reasoning, summarization, and report writing
 
 Tasks
 
-Research Task → data collection
+Research task → data collection
 
-Analysis Task → synthesis + reporting
+Analysis task → synthesis and output
 
-Agents collaborate sequentially to ensure accuracy and logical flow.
+Orchestration
 
-🏗️ Architecture
-User Input (Company Name)
-        ↓
-Research Agent (Web + LLM)
-        ↓
-Analysis Agent (Reasoning + Synthesis)
-        ↓
-Final Report (output/report.md)
-📁 Project Structure
-financial-researcher/
-├── src/
-│   └── financial_researcher/
-│       ├── crew.py          # Agent & crew definitions
-│       ├── main.py          # Entry point
-│       └── config/
-│           ├── agents.yaml  # Agent behavior & roles
-│           └── tasks.yaml   # Task definitions
-├── output/
-│   └── report.md            # Generated research report
-├── .env                     # API keys (not committed)
-├── pyproject.toml
-└── README.md
-⚙️ Tech Stack
+CrewAI manages agent execution order and context sharing
+
+Agents are configured via YAML for clarity and easy iteration
+
+Key engineering decisions
+
+Backend-only design
+API keys are never exposed to the client or frontend.
+
+Config-driven agents
+Agent behavior and prompts live in YAML files, not code.
+
+Explicit environment handling
+Environment variables are loaded safely using python-dotenv.
+
+Tool isolation
+External tools (web search) are injected per-agent rather than globally.
+
+Project Structure:
+<img width="508" height="252" alt="Screenshot 2026-01-31 at 2 38 52 PM" src="https://github.com/user-attachments/assets/6f57200b-5af5-42c4-b1d6-4852b567d7b0" />
+Tech stack
 
 Python
 
-CrewAI – multi-agent orchestration
+CrewAI (agent orchestration)
 
-OpenAI API – LLM reasoning & generation
+OpenAI API (LLM reasoning)
 
-Serper API – real-time web search
+Serper API (web search)
 
-dotenv – environment management
+python-dotenv
 
-🚀 Getting Started
-1️⃣ Clone the repository
-git clone https://github.com/mahgolmoghaddas/financial-researcher.git
-cd financial-researcher
-2️⃣ Create and activate a virtual environment
-python -m venv .venv
-source .venv/bin/activate  # macOS / Linux
-3️⃣ Install dependencies
-pip install -r requirements.txt
-4️⃣ Set environment variables
-
-Create a .env file in the project root:
-
-OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxx
-SERPER_API_KEY=xxxxxxxxxxxxxxxx
-
-⚠️ Never commit .env to GitHub.
-
-5️⃣ Run the project
+Running the project
 crewai run
 
 Or directly:
 
 python -m financial_researcher.main
-📄 Output
 
-After execution, the final report is saved to:
+A report is generated at:
 
 output/report.md
+What this demonstrates
 
-The report is:
+This project demonstrates:
 
-Human-readable
+Designing agent-based workflows
 
-Easy to share
+Using LLMs beyond chat interfaces
 
-Ready for presentations or further analysis
+Managing external tools and APIs cleanly
 
-🧩 Customization
+Writing maintainable, config-driven Python applications
 
-You can easily adapt this system by:
+Building AI systems with clear execution boundaries
 
-Changing agent behavior in agents.yaml
+Possible extensions
 
-Modifying task prompts in tasks.yaml
+Add more specialized agents (risk, ESG, macro)
 
-Adding new agents (e.g. Risk Analyst, ESG Analyst)
+Compare multiple companies in one run
 
-Integrating additional tools or APIs
+Export reports to PDF
 
-🔐 Security Notes
+Integrate internal documents using RAG
 
-API keys are loaded via environment variables
+Add a simple web UI on top of the backend
 
-No secrets are stored in code
-
-Designed for backend/server execution only
-
-💡 Use Cases
-
-Investment research automation
-
-Startup or company profiling
-
-Competitive landscape analysis
-
-Financial due diligence
-
-Internal research tooling
-
-🛠️ Future Enhancements
-
-PDF report generation
-
-Multi-company comparison
-
-Historical trend analysis
-
-RAG integration with internal documents
-
-Web UI / dashboard
-
-👩‍💻 Author
+Author
 
 Mahgol Moghaddas
-Software Engineer | AI & Agentic Systems
-📍 Montreal, Canada
+Software Engineer
+Montreal, Canada
