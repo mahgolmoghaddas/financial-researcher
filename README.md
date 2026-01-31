@@ -70,19 +70,8 @@ Agent roles and task instructions are defined in YAML files, which makes the sys
 
 
 
-financial-researcher/
-├── src/
-│ └── financial_researcher/
-│ ├── crew.py # Agent and crew setup
-│ ├── main.py # Application entry point
-│ └── config/
-│ ├── agents.yaml # Agent definitions
-│ └── tasks.yaml # Task instructions
-├── output/
-│ └── report.md # Generated report
-├── .env # API keys (not committed)
-└── README.md
 
+<img width="358" height="272" alt="Screenshot 2026-01-31 at 4 21 57 PM" src="https://github.com/user-attachments/assets/dcc733ce-d480-4781-ba15-8f5d3e13155b" />
 
 
 ---
