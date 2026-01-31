@@ -1,124 +1,95 @@
 Financial Researcher
 
-A Python project that uses multiple AI agents to automate company research and produce a structured financial analysis report.
+Financial Researcher is a Python project that uses multiple AI agents to research a company and generate a short financial analysis report.
 
-The goal of this project is to demonstrate how agent-based systems, LLM orchestration, and external tools can be combined into a clean, working backend application.
+You provide a company name (for example, Apple), and the system collects relevant information, analyzes it, and saves a written report to a file. The project is designed as a backend research assistant rather than a trading or prediction tool.
 
-Why this project
+Purpose
 
-I built this project to explore:
+This project was built to explore practical use of agent-based systems for research tasks, with a focus on:
 
-Multi-agent coordination using CrewAI
+Coordinating multiple AI agents in a clear workflow
 
-Practical use of LLMs for research and analysis (not chat)
+Separating research and analysis responsibilities
 
-Clean separation between research, analysis, and orchestration
+Using LLMs for structured reasoning instead of chat
 
-Environment-safe API usage and backend-only execution
+Keeping configuration and prompts out of application code
 
-This is a backend-focused project designed to be readable, extensible, and easy to reason about.
+It also serves as a clean, readable example of an AI-powered backend application.
 
-What the system does
+What it does
 
-Given a company name as input, the system:
+For a given company name, the system:
 
-Gathers recent, relevant information using a research agent
+Gathers recent and relevant information from the web
 
-Passes findings to an analysis agent for synthesis
+Reviews and summarizes key financial and market points
 
-Produces a written financial summary
+Produces a short, structured analysis
 
-Saves the output as a Markdown report
+Saves the result as a Markdown report
 
-The system runs deterministically in a sequential pipeline so each step builds on the previous one.
+The workflow runs sequentially so each step builds on the previous one.
 
-Architecture overview
+How it works
 
-Agents
+The project uses CrewAI to orchestrate two agents:
 
-Research agent: information gathering via web search
+Research agent
+Responsible for gathering information using web search tools.
 
-Analysis agent: reasoning, summarization, and report writing
+Analysis agent
+Reviews the research output and writes the final report.
 
-Tasks
+Agent roles and task instructions are defined in YAML files, making it easy to adjust behavior without changing code.
 
-Research task → data collection
-
-Analysis task → synthesis and output
-
-Orchestration
-
-CrewAI manages agent execution order and context sharing
-
-Agents are configured via YAML for clarity and easy iteration
-
-Key engineering decisions
-
-Backend-only design
-API keys are never exposed to the client or frontend.
-
-Config-driven agents
-Agent behavior and prompts live in YAML files, not code.
-
-Explicit environment handling
-Environment variables are loaded safely using python-dotenv.
-
-Tool isolation
-External tools (web search) are injected per-agent rather than globally.
-
-Project Structure:
-
-<img width="508" height="252" alt="Screenshot 2026-01-31 at 2 38 52 PM" src="https://github.com/user-attachments/assets/6f57200b-5af5-42c4-b1d6-4852b567d7b0" />
+Project structure
 
 
+<img width="553" height="286" alt="Screenshot 2026-01-31 at 2 48 01 PM" src="https://github.com/user-attachments/assets/14a8da98-34a9-4d54-a9aa-9bdb2a31a8d9" />
 
-Tech stack
 
 Python
 
-CrewAI (agent orchestration)
+CrewAI
 
-OpenAI API (LLM reasoning)
+OpenAI API
 
 Serper API (web search)
 
 python-dotenv
 
 Running the project
+
+After setting your environment variables, run:
+
 crewai run
 
-Or directly:
+Or:
 
 python -m financial_researcher.main
 
-A report is generated at:
+The generated report will be saved to:
 
 output/report.md
-What this demonstrates
+Configuration
 
-This project demonstrates:
+Agent behavior and prompts are defined in agents.yaml
 
-Designing agent-based workflows
+Task instructions are defined in tasks.yaml
 
-Using LLMs beyond chat interfaces
+API keys are loaded from environment variables
 
-Managing external tools and APIs cleanly
+This setup keeps the application logic small and easy to maintain.
 
-Writing maintainable, config-driven Python applications
+Notes
 
-Building AI systems with clear execution boundaries
+The project requires valid API keys for external services.
 
-Possible extensions
+API usage may incur costs depending on usage.
 
-Add more specialized agents (risk, ESG, macro)
-
-Compare multiple companies in one run
-
-Export reports to PDF
-
-Integrate internal documents using RAG
-
-Add a simple web UI on top of the backend
+Output quality depends on available public information and model responses.
 
 Author
 
