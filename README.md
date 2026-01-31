@@ -67,7 +67,11 @@ Tool isolation
 External tools (web search) are injected per-agent rather than globally.
 
 Project Structure:
+
 <img width="508" height="252" alt="Screenshot 2026-01-31 at 2 38 52 PM" src="https://github.com/user-attachments/assets/6f57200b-5af5-42c4-b1d6-4852b567d7b0" />
+
+
+
 Tech stack
 
 Python
